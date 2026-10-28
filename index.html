@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STARTUP EM 2 HORAS</title>
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+ 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#3186FF',
+                            red: '#DB4437',
+                            yellow: '#FBBC05',
+                            green: '#34A853',
+                            bg: '#F0F4FA',
+                            card: '#FFFFFF',
+                            text: '#000000'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Google Sans"', 'Outfit', 'sans-serif'],
+                        display: ['"Google Sans Flex"', '"Google Sans"', 'Outfit', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'material': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                        'material-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+
+        @font-face {
+            font-family: 'Google Sans';
+            src: local('Google Sans Regular');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Google Sans Flex';
+            src: local('Google Sans Bold'), local('Google Sans Flex');
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #F0F4FA;
+            color: #000000;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .modal-enter {
+            animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .modal-content-enter {
+            animation: slideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .card-stripe {
+            height: 6px;
+            width: 100%;
+            display: flex;
+        }
+        .stripe-segment { flex: 1; }
+        
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col relative overflow-x-hidden selection:bg-brand-blue selection:text-brand-card">
+
+
+    <header class="w-full pt-16 pb-12 px-6 relative text-center">
+
+        <div class="absolute top-8 left-8 md:top-12 md:left-20 w-3 h-3 rounded-full bg-brand-yellow animate-pulse hidden md:block"></div>
+        <div class="absolute bottom-4 right-10 md:bottom-12 md:right-24 w-5 h-5 bg-brand-green rotate-12 hidden md:block opacity-80" style="animation: spin 8s linear infinite;"></div>
+        <div class="absolute top-10 right-1/4 w-4 h-4 rounded-full bg-brand-blue opacity-50 hidden lg:block" style="animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
+
+        <div class="max-w-4xl mx-auto z-10 relative">
+            <h1 class="font-display font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter mb-4 text-brand-text leading-tight">
+                STARTUP EM <span class="text-brand-blue inline-block hover:-translate-y-2 transition-transform duration-300">2 HORAS</span>
+            </h1>
+            <p class="text-lg md:text-2xl font-medium text-brand-text opacity-75 max-w-2xl mx-auto leading-relaxed">
+                Escolha seu dilema e traga landing pages incríveis com a solução.
+            </p>
+        </div>
+    </header>
+
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 pb-24 w-full">
+        <div id="dilemma-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+
+        </div>
+    </main>
+
+
+    <div id="modal-backdrop" class="fixed inset-0 z-50 bg-brand-text/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div id="modal-container" class="bg-brand-card w-full max-w-2xl max-h-[90vh] rounded-2xl shadow-2xl relative flex-col hidden overflow-hidden">
+
+            <div class="card-stripe">
+                <div class="stripe-segment bg-brand-blue"></div>
+                <div class="stripe-segment bg-brand-red"></div>
+                <div class="stripe-segment bg-brand-yellow"></div>
+                <div class="stripe-segment bg-brand-green"></div>
+            </div>
+            
+
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-brand-text hover:text-brand-card hover:bg-brand-red p-2 rounded-full transition-colors z-20 shadow-sm" aria-label="Fechar modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+
+            <div class="p-6 md:p-10 overflow-y-auto no-scrollbar relative z-10 flex-grow">
+                <div class="inline-block px-3 py-1 bg-brand-bg border border-brand-text/10 text-brand-text font-bold rounded-lg text-sm mb-4" id="modal-tag">
+
+                </div>
+                <h2 id="modal-title" class="font-display font-black text-2xl md:text-4xl text-brand-text mb-8 leading-tight">
+
+                </h2>
+                
+                <div class="space-y-6">
+
+                    <div class="bg-brand-green/5 p-5 rounded-xl border border-brand-green/20">
+                        <h3 class="font-bold text-lg mb-3 flex items-center gap-2 text-brand-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Requisitos
+                        </h3>
+                        <ul id="modal-requirements" class="space-y-2 text-brand-text text-base leading-relaxed opacity-90">
+
+                        </ul>
+                    </div>
+
+
+                    <div class="bg-brand-red/5 p-5 rounded-xl border border-brand-red/20">
+                        <h3 class="font-bold text-lg mb-3 flex items-center gap-2 text-brand-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            Restrições
+                        </h3>
+                        <ul id="modal-restrictions" class="space-y-2 text-brand-text text-base leading-relaxed opacity-90">
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-end pt-4 border-t border-brand-bg">
+                    <button onclick="closeModal()" class="bg-brand-blue text-brand-card font-bold py-3 px-8 rounded-xl shadow-md hover:shadow-lg hover:shadow-brand-blue/30 hover:-translate-y-1 transition-all">
+                        Entendido, ao código!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        const dilemmas = [
+            {
+                id: 1,
+                title: 'O "Tinder" de Hobbies',
+                reqs: [
+                    "Hero Section atacando o tédio com um título forte focado no objeto parado (ex: 'Seu violão empoeirado vale uma aula').",
+                    "Pelo menos 3 cards de 'Match' mostrando o escambo claro (Ofereço X ↔ Busco Y)."
+                ],
+                rests: [
+                    "Proibido uso de cifrão ou menção a dinheiro (foco 100% em troca).",
+                    "Sem banco de dados; apenas código estático."
+                ]
+            },
+            {
+                id: 2,
+                title: 'Agência de Viagens para Pets',
+                reqs: [
+                    "Estética de Alto Luxo imitando um resort 5 estrelas.",
+                    "3 cards de pacotes de fuga absurdos (ex: 'Spa de Sachês')."
+                ],
+                rests: [
+                    "Proibido visual colorido/infantil de petshop de bairro.",
+                    "Botão de reserva deve apenas abrir um modal visual, sem e-commerce real."
+                ]
+            },
+            {
+                id: 3,
+                title: '"A Desculpa Perfeita S/A"',
+                reqs: [
+                    "Visual corporativo B2B ultra sério (estilo Slack/Microsoft) para vender 'desculpas'.",
+                    "Tabela de preços comparando 'Plano Básico' (atraso comum) com 'Plano Desespero' (abdução)."
+                ],
+                rests: [
+                    "Zero piadas no design, o humor deve estar apenas na seriedade do texto.",
+                    "Sem geração de PDF real."
+                ]
+            },
+            {
+                id: 4,
+                title: 'O "Ifood" das Sobras Gourmet',
+                reqs: [
+                    "Estética de restaurante Estrela Michelin (fundo escuro, fontes finas).",
+                    "Seção visual de 'Calculadora de Sobras' com checkboxes (ex: meia cebola, um ovo)."
+                ],
+                rests: [
+                    "Proibido usar fotos reais de comida feia, o visual tem que vender luxo.",
+                    "Sem sistema de delivery ou mapas reais."
+                ]
+            },
+            {
+                id: 5,
+                title: 'O Fliperama da Vida Adulta',
+                reqs: [
+                    "Imersão 8-bits obrigatória com botão piscante 'Insert Coin'.",
+                    "Cards transformando boletos e louça suja em 'Fases a serem superadas'."
+                ],
+                rests: [
+                    "Proibido design limpo/moderno; deve ser 100% nostálgico e retro.",
+                    "Proibido criar um jogo de verdade, é apenas a página de vendas."
+                ]
+            },
+            {
+                id: 6,
+                title: 'O Tradutor de Caos Felino',
+                reqs: [
+                    "Clima de agência do FBI/Crise resolvendo 'ataques terroristas' felinos.",
+                    "Dicionário Tático traduzindo a ação (derrubou copo) para o motivo (testando sua paciência)."
+                ],
+                rests: [
+                    "Foco estrito em gatos; proibido mencionar cães.",
+                    "Sem backend de processamento de imagem."
+                ]
+            },
+            {
+                id: 7,
+                title: 'O "Socorro, Não Entendi Nada"',
+                reqs: [
+                    "Visual de kit de primeiros socorros para sobrevivência corporativa ou viagens.",
+                    "Cards de 'Antes/Depois' (O que o chefe disse vs. O que você entendeu)."
+                ],
+                rests: [
+                    "Proibido parecer uma escola de inglês tradicional.",
+                    "Todo o conteúdo deve estar no arquivo estático."
+                ]
+            },
+            {
+                id: 8,
+                title: 'O "SOS Eventos de Tecnologia"',
+                reqs: [
+                    "Um botão vermelho gigante de 'Pânico/SOS' na primeira dobra.",
+                    "Cards com pacotes táticos (Plano Cadê o Palestrante?, Plano Acabou o Café)."
+                ],
+                rests: [
+                    "Proibido design institucional; precisa passar adrenalina e urgência.",
+                    "Sem integração com Uber/apps de entrega."
+                ]
+            }
+        ];
+
+        const brandColors = ['text-brand-blue', 'text-brand-green', 'text-brand-yellow', 'text-brand-red'];
+        const brandBgs = ['bg-brand-blue/10', 'bg-brand-green/10', 'bg-brand-yellow/20', 'bg-brand-red/10'];
+
+        function renderCards() {
+            const grid = document.getElementById('dilemma-grid');
+            grid.innerHTML = ''; 
+
+            dilemmas.forEach((dilemma, index) => {
+                const colorIdx = index % 4; // Cicla as cores
+                const textColor = brandColors[colorIdx];
+                const bgColor = brandBgs[colorIdx];
+
+                const cardHTML = `
+                    <div onclick="openModal(${index})" role="button" tabindex="0" class="bg-brand-card rounded-2xl shadow-material hover:shadow-material-hover transform hover:-translate-y-1 transition-all duration-200 cursor-pointer overflow-hidden group flex flex-col h-full border border-transparent hover:border-brand-bg focus:outline-none focus:ring-4 focus:ring-brand-blue/20">
+                        <div class="card-stripe opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="stripe-segment bg-brand-blue"></div>
+                            <div class="stripe-segment bg-brand-red"></div>
+                            <div class="stripe-segment bg-brand-yellow"></div>
+                            <div class="stripe-segment bg-brand-green"></div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-grow flex flex-col">
+                            <div class="mb-4">
+                                <span class="inline-block px-3 py-1 bg-brand-bg text-brand-text/70 font-bold rounded-md text-xs tracking-wider uppercase">
+                                    Dilema ${dilemma.id}
+                                </span>
+                            </div>
+                            <h3 class="font-display font-bold text-xl md:text-2xl text-brand-text mb-6 leading-tight group-hover:text-brand-blue transition-colors">
+                                ${dilemma.title}
+                            </h3>
+                            <div class="mt-auto flex items-center justify-between">
+                                <div class="${bgColor} ${textColor} p-3 rounded-full transition-transform group-hover:scale-110">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-bold ${textColor} flex items-center gap-1 group-hover:translate-x-2 transition-transform">
+                                    Detalhes <span aria-hidden="true">&rarr;</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        const backdrop = document.getElementById('modal-backdrop');
+        const container = document.getElementById('modal-container');
+
+        function openModal(index) {
+            const dilemma = dilemmas[index];
+            
+            document.getElementById('modal-tag').textContent = `Dilema ${dilemma.id}`;
+            document.getElementById('modal-title').textContent = dilemma.title;
+            
+            const reqList = document.getElementById('modal-requirements');
+            reqList.innerHTML = '';
+            dilemma.reqs.forEach((req, idx) => {
+                const li = document.createElement('li');
+                li.className = "flex items-start gap-3";
+                li.innerHTML = `
+                    <span class="font-bold text-brand-green mt-0.5">${idx + 1}.</span>
+                    <span>${req}</span>
+                `;
+                reqList.appendChild(li);
+            });
+
+            const restList = document.getElementById('modal-restrictions');
+            restList.innerHTML = '';
+            dilemma.rests.forEach((rest, idx) => {
+                const li = document.createElement('li');
+                li.className = "flex items-start gap-3";
+                li.innerHTML = `
+                    <span class="font-bold text-brand-red mt-0.5">${idx + 1}.</span>
+                    <span>${rest}</span>
+                `;
+                restList.appendChild(li);
+            });
+
+            backdrop.classList.remove('hidden');
+            container.classList.remove('hidden');
+            backdrop.classList.add('flex', 'modal-enter');
+            container.classList.add('flex', 'modal-content-enter');
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            backdrop.classList.add('hidden');
+            container.classList.add('hidden');
+            backdrop.classList.remove('flex', 'modal-enter');
+            container.classList.remove('flex', 'modal-content-enter');
+            
+            document.body.style.overflow = '';
+        }
+
+        backdrop.addEventListener('click', function(e) {
+            if (e.target === backdrop) closeModal();
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !backdrop.classList.contains('hidden')) closeModal();
+        });
+
+        document.addEventListener('DOMContentLoaded', renderCards);
+
+    </script>
+</body>
+<
